@@ -10,9 +10,9 @@ As of now I don't think I will be accepting any contributions (other than, from 
 -Aflah
 
 P.S. I feel like I should probably give credit to the previous team members so here they are:
-Team Members:
-Alexander Steel
-Samara Kirkham
-Ryan Lipinski
-Luke Raadschelders
-Aflah Bhari (yeah I know ME)
+Team Members: 
+Alexander Steel, 
+Samara Kirkham, 
+Ryan Lipinski, 
+Luke Raadschelders, 
+Aflah Bhari, (yeah I know ME)
