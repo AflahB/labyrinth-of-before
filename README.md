@@ -7,3 +7,4 @@ This game is the product of a collaborative effort of second year Software Engin
 
 As of now I don't think I will be accepting any contributions (other than, from my team mates), thank you. This is a public repo so as I understand it, you can fork it. I cannot stop you from doing so (I think), however I will be making this repo private soon...when I get my student pack.
 
+-Aflah
