@@ -1,57 +1,35 @@
 package com.mongooseofbefore.Labyrinth_of_Before.guiengine;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
 
 public class Map {
     private Tile[][]	tileMap_;
     private int			width;
     private int			height;
-    private Bitmap      bitmap0;
-    private Bitmap      bitmap1;
+    private Bitmap[]    bitmaps_;
+
     /**
      * initialises the map Instance
      * @param xw the map width in tiles
      * @param yh the map height in tiles
      */
-    public Map(int xw, int yh) {
+    public Map(int xw, int yh, Bitmap[] bitmaps) {
         tileMap_    = new Tile[xw][yh];
         this.width  = xw - 1;
         this.height = yh - 1;
+        bitmaps_ = bitmaps;
     }
 
-    /**
-     *  Creates a new tile in every space in the array, then sets the outer tiles to wall tiles
-     */
-    public void init(Context context) {
-        bitmap0 = Helper.getBitmapFromAsset("art/tiles/fields/floor 1.png", context);
-        bitmap1 = Helper.getBitmapFromAsset("art/tiles/fields/wall 1.png", context);
-        GameEngine.flipped = false;
-    }
-
-    /**
-     * gets the current Tile Map
-     * @return
-     */
-    public Tile[][] getLevel() {
+    public Tile[][] getTileMap() {
         return tileMap_;
     }
-    /**
-     * sets the level
-     * @param tileMap an array containing the new map
-     */
-    public void setLevel(Tile[][] tileMap) {
+
+    public void setTileMap(Tile[][] tileMap) {
         this.tileMap_ = tileMap;
     }
 
-    /**
-     * draws the frame
-     *
-     * @param canvas the canvas to draw on
-     */
     public void paint(Canvas canvas) {
         int h = 0;
         int w = 0;
@@ -65,15 +43,10 @@ public class Map {
                 rect.set((w * rectwidth) + 24, (h * rectheight) + 24,
                         ((w + 1) * rectwidth) + 24, ((h + 1) * rectheight) + 24);
                 if (tileMap_[w][h].getType() == 1) {
-                    try {
-                        canvas.drawBitmap(bitmap1, null, rect, null);
-                    } catch (Exception e) {
-                    }
+                        canvas.drawBitmap(bitmaps_[0], null, rect, null);
+
                 } else {
-                    try {
-                        canvas.drawBitmap(bitmap0, null, rect, null);
-                    } catch (Exception e) {
-                    }
+                        canvas.drawBitmap(bitmaps_[1], null, rect, null);
                 }
                 w++;
             }

@@ -52,16 +52,16 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
 
     private boolean movePlayer(View v){
         if (v == upView) {
-            GameEngine.movePlayerUp();
+            GameEngine.movePlayer(0);
         }
         else if (v == leftView) {
-            GameEngine.movePlayerLeft();
+            GameEngine.movePlayer(3);
         }
         else if (v == downView) {
-            GameEngine.movePlayerDown();
+            GameEngine.movePlayer(2);
         }
         else if (v == rightView) {
-            GameEngine.movePlayerRight();
+            GameEngine.movePlayer(1);
             return true;
         }
         else

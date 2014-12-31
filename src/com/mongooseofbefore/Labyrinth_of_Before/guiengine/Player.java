@@ -1,6 +1,5 @@
 package com.mongooseofbefore.Labyrinth_of_Before.guiengine;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -8,45 +7,20 @@ import android.graphics.Rect;
 public class Player extends Character{
 
     private boolean nextLevel_;
+    private int steps_;
 
     public Player(int x, int y, int d, Bitmap[][] bitmaps) {
         super(x, y, d, bitmaps);
+        steps_ = 0;
     }
 
-    public void draw(Canvas canvas, Context context){
+    public void draw(Canvas canvas){
         int d       = getDirection();
+        int step    = getSteps()%4;
         int xPos    = getXPos();
         int yPos    = getYPos();
-        Bitmap  bitmap0;
         Rect rect   = new Rect((xPos * 32)+24, (yPos * 32)+24, ((xPos+1) * 32)+24, ((yPos+1) * 32)+24);
-        if(d==1)
-        {
-            bitmap0 = Helper.getBitmapFromAsset("art/menu/bgn.png", context);
-            canvas.drawBitmap(bitmap0, null, rect, null);
-        }
-        else if(d==2)
-        {
-            bitmap0 = Helper.getBitmapFromAsset("art/menu/bgn.png", context);
-            canvas.drawBitmap(bitmap0, null, rect, null);
-
-        }
-        else if(d==3)
-        {
-            bitmap0 = Helper.getBitmapFromAsset("art/menu/bgn.png", context);
-            canvas.drawBitmap(bitmap0, null, rect, null);
-        }
-        else if(d==4)
-        {
-            bitmap0 = Helper.getBitmapFromAsset("art/menu/bgn.png", context);
-            canvas.drawBitmap(bitmap0, null, rect, null);
-        }
-
-    }
-
-    public void setPlayer(int x, int y, int d){
-        setXPos(x);
-        setYPos(y);
-        setDirection(d);
+        canvas.drawBitmap(getSprites()[d][step], null, rect, null);
     }
 
     protected void move(Map currentLevel, int xPos, int yPos, int direction){
@@ -60,15 +34,18 @@ public class Player extends Character{
             yPos = 20;
 
         setDirection(direction);
-        if(currentLevel.getLevel()[xPos][yPos].getType() == 1){
+        if(currentLevel.getTileMap()[xPos][yPos].getType() == 1){
             return;
         }
         setXPos(xPos);
         setYPos(yPos);
-        if(currentLevel.getLevel()[xPos][yPos].getType() == 2){
+        steps_++;
+        if(currentLevel.getTileMap()[xPos][yPos].getType() == 2){
             nextLevel_ = true;
         }
     }
+
+    public int getSteps(){return steps_;}
 
     public boolean nextLevel(){
         return nextLevel_;
