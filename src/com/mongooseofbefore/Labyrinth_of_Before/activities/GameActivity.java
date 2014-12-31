@@ -6,8 +6,11 @@ import android.support.v4.app.FragmentActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.ImageView;
 import com.example.Labyrinth_of_Before.R;
+import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
 import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameThread;
+import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Helper;
 
 public class GameActivity extends FragmentActivity implements OnTouchListener {
     @Override
@@ -16,10 +19,21 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
         setContentView(R.layout.game);
         Intent intent = getIntent();
 
-        findViewById(R.id.imageViewUp).setOnTouchListener(this);
-        findViewById(R.id.imageViewLeft).setOnTouchListener(this);
-        findViewById(R.id.imageViewDown).setOnTouchListener(this);
-        findViewById(R.id.imageViewRight).setOnTouchListener(this);
+        ImageView up = (ImageView) findViewById(R.id.imageViewUp);
+        ImageView right = (ImageView) findViewById(R.id.imageViewRight);
+        ImageView down = (ImageView) findViewById(R.id.imageViewDown);
+        ImageView left = (ImageView) findViewById(R.id.imageViewLeft);
+
+        up.setOnTouchListener(this);
+        right.setOnTouchListener(this);
+        down.setOnTouchListener(this);
+        left.setOnTouchListener(this);
+
+
+        up.setImageBitmap(Helper.getBitmapFromAsset("art/controls/up.png", this));
+        right.setImageBitmap(Helper.getBitmapFromAsset("art/controls/right.png", this));
+        down.setImageBitmap(Helper.getBitmapFromAsset("art/controls/down.png", this));
+        left.setImageBitmap(Helper.getBitmapFromAsset("art/controls/left.png", this));
 
     }
 
@@ -40,12 +54,16 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
     private boolean movePlayer(View v){
         switch (v.getId()){
             case R.id.imageViewUp:
+                GameEngine.movePlayer(0);
                 return true;
             case R.id.imageViewRight:
+                GameEngine.movePlayer(1);
                 return true;
             case R.id.imageViewDown:
+                GameEngine.movePlayer(2);
                 return true;
             case R.id.imageViewLeft:
+                GameEngine.movePlayer(3);
                 return true;
             default:
                 return false;

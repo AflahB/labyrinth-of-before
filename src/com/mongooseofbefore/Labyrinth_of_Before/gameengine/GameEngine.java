@@ -6,9 +6,8 @@ import com.mongooseofbefore.Labyrinth_of_Before.guiengine.*;
 
 public class GameEngine {
 
-    public  float   screenWidth;
-    public  float   screenHeight;
-    private static  Level     level_;
+    private static  Level   level_;
+    private static  Camera  camera_;
 
     Bitmap[]        currentBitmaps;
     Bitmap[]        flipBitmaps;
@@ -25,7 +24,7 @@ public class GameEngine {
      */
     public void init(Context context) {
         levelCount_ = 1;
-        setSurfaceDimensions(240, 160);
+
         context_    = context;
 
         currentBitmaps  = new Bitmap[2];
@@ -38,6 +37,8 @@ public class GameEngine {
 
         //Loads current level from CSV
         load(levelCount_);
+
+        camera_= new Camera();
 
     }
 
@@ -84,21 +85,12 @@ public class GameEngine {
 
         Object[] levelObjects = Helper.parseLevelCSV(path, context_);
         level_ = new Level(levelObjects, currentBitmaps, flipBitmaps, playerSprites, bossSprites);
+
     }
 
     public void nextLevel(){
         levelCount_++;
         load(levelCount_);
-    }
-
-    /**
-     * Sets the surface size of the game view
-     * @param width
-     * @param height
-     */
-    public void setSurfaceDimensions(int width, int height) {
-        screenWidth     = width;
-        screenHeight    = height;
     }
 
 
@@ -114,10 +106,7 @@ public class GameEngine {
      * @param canvas
      */
     public void drawMap(Canvas canvas) {
-        level_.current.paint(canvas);		//Calls the paint method in the map class, to draw the frame
-        level_.getPlayer().draw(canvas);
-        if(level_.getBoss() != null)
-            level_.getBoss().draw(canvas);
+        camera_.draw(level_, canvas);
     }
 
     public void mapFlip(){

@@ -79,6 +79,5 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width,
                                int height) {
-        gameEngine.setSurfaceDimensions(width, height);
     }
 }

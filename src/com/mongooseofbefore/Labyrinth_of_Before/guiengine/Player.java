@@ -1,8 +1,6 @@
 package com.mongooseofbefore.Labyrinth_of_Before.guiengine;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
 
 public class Player extends Character{
 
@@ -14,16 +12,26 @@ public class Player extends Character{
         steps_ = 0;
     }
 
-    public void draw(Canvas canvas){
-        int d       = getDirection();
-        int step    = getSteps()%4;
-        int xPos    = getXPos();
-        int yPos    = getYPos();
-        Rect rect   = new Rect((xPos * 32)+24, (yPos * 32)+24, ((xPos+1) * 32)+24, ((yPos+1) * 32)+24);
-        canvas.drawBitmap(getSprites()[d][step], null, rect, null);
-    }
+    public void move(Map currentLevel, int direction){
+        int xPos = getXPos();
+        int yPos = getYPos();
+        setDirection(direction);
 
-    protected void move(Map currentLevel, int xPos, int yPos, int direction){
+        switch(direction){
+            case 0:
+                yPos--;
+                break;
+            case 1:
+                xPos++;
+                break;
+            case 2:
+                yPos++;
+                break;
+            case 3:
+                xPos--;
+                break;
+        }
+
         if(xPos >= 21)
             xPos = 0;
         if(xPos < 0)
@@ -33,12 +41,10 @@ public class Player extends Character{
         if(yPos < 0)
             yPos = 20;
 
-        setDirection(direction);
-        if(currentLevel.getTileMap()[xPos][yPos].getType() == 1){
-            return;
+        if(currentLevel.getTileMap()[xPos][yPos].getType()!= 1){
+            setXPos(xPos);
+            setYPos(yPos);
         }
-        setXPos(xPos);
-        setYPos(yPos);
         steps_++;
         if(currentLevel.getTileMap()[xPos][yPos].getType() == 2){
             nextLevel_ = true;

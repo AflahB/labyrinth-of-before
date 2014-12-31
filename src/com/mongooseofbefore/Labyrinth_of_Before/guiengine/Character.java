@@ -1,8 +1,6 @@
 package com.mongooseofbefore.Labyrinth_of_Before.guiengine;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
 
 public abstract class Character {
 
@@ -22,13 +20,6 @@ public abstract class Character {
     public int getYPos()            {return yPos_;}
     public int getDirection()       {return direction_;}
 
-    public void draw(Canvas canvas){
-        int d       = this.getDirection();
-        int xPos    = this.getXPos();
-        int yPos    = this.getYPos();
-        Rect rect   = new Rect((xPos * 32)+24, (yPos * 32)+24, ((xPos+1) * 32)+24, ((yPos+1) * 32)+24);
-        canvas.drawBitmap(sprites_[d][0], null, rect, null);
-    }
 
     public void move(Map currentLevel, int direction){
         int xPos = getXPos();
