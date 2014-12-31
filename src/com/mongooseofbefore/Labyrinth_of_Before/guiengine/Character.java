@@ -23,10 +23,8 @@ public abstract class Character {
     public int getDirection()   {return direction_;}
 
     public void moveUp(Map currentlevel){
-
         move(currentlevel, getXPos(),       getYPos() - 1,  1);
     }
-
     public void moveDown(Map currentlevel){
         move(currentlevel, getXPos(),       getYPos() + 1,  3);
     }
@@ -79,14 +77,14 @@ public abstract class Character {
     }
 
     protected void move(Map currentLevel, int xPos, int yPos, int direction){
-        if(xPos > 21)
+        if(xPos >= 21)
             xPos = 0;
         if(xPos < 0)
-            xPos = 21;
-        if(yPos > 21)
+            xPos = 20;
+        if(yPos >= 21)
             yPos = 0;
         if(yPos < 0)
-            yPos = 21;
+            yPos = 20;
 
         setDirection(direction);
         if(currentLevel.getLevel()[xPos][yPos].getType()!= 1){

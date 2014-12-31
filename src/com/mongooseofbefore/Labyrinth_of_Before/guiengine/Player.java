@@ -14,9 +14,9 @@ public class Player extends Character{
     }
 
     public void draw(Canvas canvas, Context context){
-        int d       = this.getDirection();
-        int xPos    = this.getXPos();
-        int yPos    = this.getYPos();
+        int d       = getDirection();
+        int xPos    = getXPos();
+        int yPos    = getYPos();
         Bitmap  bitmap0;
         Rect rect   = new Rect((xPos * 32)+24, (yPos * 32)+24, ((xPos+1) * 32)+24, ((yPos+1) * 32)+24);
         if(d==1)
@@ -44,20 +44,20 @@ public class Player extends Character{
     }
 
     public void setPlayer(int x, int y, int d){
-        this.setXPos(x);
-        this.setYPos(y);
-        this.setDirection(d);
+        setXPos(x);
+        setYPos(y);
+        setDirection(d);
     }
 
     protected void move(Map currentLevel, int xPos, int yPos, int direction){
-        if(xPos > 21)
+        if(xPos >= 21)
             xPos = 0;
         if(xPos < 0)
-            xPos = 21;
-        if(yPos > 21)
+            xPos = 20;
+        if(yPos >= 21)
             yPos = 0;
         if(yPos < 0)
-            yPos = 21;
+            yPos = 20;
 
         setDirection(direction);
         if(currentLevel.getLevel()[xPos][yPos].getType() == 1){

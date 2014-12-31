@@ -53,13 +53,24 @@ public class MainMenuActivity extends Activity implements OnTouchListener {
     }
 
     public boolean onTouch(View view, MotionEvent event){
+        switch (event.getAction() ) {
+            case MotionEvent.ACTION_DOWN: return selectView(view);
+            case MotionEvent.ACTION_UP: break;
+        }
+        return false;
+    }
+
+    private boolean selectView(View view){
         if(view == startView){
             Intent intent = new Intent(this, GameActivity.class);
             this.startActivity(intent);
         }
-        if(view == exitView){
-            this.finish();
+        else if(view == exitView){
+            finish();
         }
-        return false;
+        else
+            return false;
+
+        return true;
     }
 }

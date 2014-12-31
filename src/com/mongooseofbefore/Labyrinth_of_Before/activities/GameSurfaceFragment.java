@@ -18,7 +18,7 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
     //game engine variables
     GameEngine gameEngine;
     SurfaceView surfaceView;
-    SurfaceHolder surfaceHolder;
+    SurfaceHolder surfaceHolder_;
     Context context;
     private GameThread gameThread;
 
@@ -28,11 +28,17 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
         View v = inflater.inflate(R.layout.gamefragment, container, false);
 
         surfaceView = (SurfaceView) v.findViewById(R.id.surfaceViewGame);
-        surfaceHolder = surfaceView.getHolder();
+        surfaceHolder_ = surfaceView.getHolder();
+
+        surfaceHolder_.addCallback(this);
+
+        // deprecated setting, but required on Android versions prior to 3.0
+        //surfaceHolder_.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS)
+
         context = v.getContext();
         gameEngine = new GameEngine();
         gameEngine.init(context);
-        gameThread = new GameThread(surfaceHolder, context, new Handler(), gameEngine);
+        gameThread = new GameThread(surfaceHolder_, context, new Handler(), gameEngine);
 
         return v;
     }
@@ -59,10 +65,8 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
      * creates the view
      */
     @Override
-    public void surfaceCreated(SurfaceHolder arg0) {
+    public void surfaceCreated(SurfaceHolder surfaceHolder) {
         if (gameThread.state == GameThread.PAUSED) {
-            gameThread = new GameThread(surfaceHolder, context, new Handler(),
-                    gameEngine);
             gameThread.start();
         } else {
             gameThread.start();

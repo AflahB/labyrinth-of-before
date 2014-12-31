@@ -56,7 +56,7 @@ public class GameEngine {
     public void load(int level){
         String  path    = "";
         switch(level){
-            case 1:     path    = "levels/fields.csv";
+            case 1:     path    = "levels/debug.csv";
                 break;
             case 2:     path    = "levels/hadespalace.csv";
                 break;
@@ -66,8 +66,9 @@ public class GameEngine {
         CSVReader.loadLevel(path, currentTileMap, flipTileMap, context_);
     }
 
-    public static void nextLevel(){
-
+    public void nextLevel(){
+        level_++;
+        load(level_);
     }
 
     /**

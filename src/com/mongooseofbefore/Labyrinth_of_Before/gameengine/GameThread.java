@@ -88,11 +88,9 @@ public class GameThread extends Thread {
                 skips++;
             }
         }
-
     }
 
     public static GameEngine GameEngine(){
         return gameEngine_;
     }
-
 }

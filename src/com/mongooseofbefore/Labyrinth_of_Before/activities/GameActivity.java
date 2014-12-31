@@ -42,9 +42,9 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
     }
 
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
+    public boolean onTouch(View view, MotionEvent event) {
         switch (event.getAction() ) {
-            case MotionEvent.ACTION_DOWN: return movePlayer(v);
+            case MotionEvent.ACTION_DOWN: return movePlayer(view);
             case MotionEvent.ACTION_UP: break;
         }
         return false;
@@ -53,20 +53,20 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
     private boolean movePlayer(View v){
         if (v == upView) {
             GameEngine.movePlayerUp();
-            return true;
         }
-        if (v == leftView) {
+        else if (v == leftView) {
             GameEngine.movePlayerLeft();
-            return true;
         }
-        if (v == downView) {
+        else if (v == downView) {
             GameEngine.movePlayerDown();
-            return true;
         }
-        if (v == rightView) {
+        else if (v == rightView) {
             GameEngine.movePlayerRight();
             return true;
         }
-        return false;
+        else
+            return false;
+
+        return true;
     }
 }
