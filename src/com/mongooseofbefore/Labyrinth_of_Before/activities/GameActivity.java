@@ -6,33 +6,20 @@ import android.support.v4.app.FragmentActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
-import android.widget.ImageView;
 import com.example.Labyrinth_of_Before.R;
-import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
 import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameThread;
 
 public class GameActivity extends FragmentActivity implements OnTouchListener {
-    ImageView   upView;
-    ImageView   leftView;
-    ImageView   downView;
-    ImageView   rightView;
-    Button      flip;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
         Intent intent = getIntent();
 
-        upView = (ImageView) findViewById(R.id.imageViewUp);
-        upView.setOnTouchListener(this);
-        leftView = (ImageView) findViewById(R.id.imageViewLeft);
-        leftView.setOnTouchListener(this);
-        downView = (ImageView) findViewById(R.id.imageViewDown);
-        downView.setOnTouchListener(this);
-        rightView = (ImageView) findViewById(R.id.imageViewRight);
-        rightView.setOnTouchListener(this);
+        findViewById(R.id.imageViewUp).setOnTouchListener(this);
+        findViewById(R.id.imageViewLeft).setOnTouchListener(this);
+        findViewById(R.id.imageViewDown).setOnTouchListener(this);
+        findViewById(R.id.imageViewRight).setOnTouchListener(this);
 
     }
 
@@ -45,28 +32,23 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
     public boolean onTouch(View view, MotionEvent event) {
         switch (event.getAction() ) {
             case MotionEvent.ACTION_DOWN: return movePlayer(view);
-            case MotionEvent.ACTION_UP: break;
+            case MotionEvent.ACTION_UP: return false;
+            default: return false;
         }
-        return false;
     }
 
     private boolean movePlayer(View v){
-        if (v == upView) {
-            GameEngine.movePlayer(0);
+        switch (v.getId()){
+            case R.id.imageViewUp:
+                return true;
+            case R.id.imageViewRight:
+                return true;
+            case R.id.imageViewDown:
+                return true;
+            case R.id.imageViewLeft:
+                return true;
+            default:
+                return false;
         }
-        else if (v == leftView) {
-            GameEngine.movePlayer(3);
-        }
-        else if (v == downView) {
-            GameEngine.movePlayer(2);
-        }
-        else if (v == rightView) {
-            GameEngine.movePlayer(1);
-            return true;
-        }
-        else
-            return false;
-
-        return true;
     }
 }
