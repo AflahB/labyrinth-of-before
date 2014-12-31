@@ -27,7 +27,7 @@ public class Camera {
 
         // draws the map array, tile by tile, based on their type
         while (h < level.current.getHeight()) {
-            while (w <= level.current.getWidth()) {
+            while (w < level.current.getWidth()) {
                 tileRect.set((w * tileRectHeight), (h * tileRectHeight),
                         ((w + 1) * tileRectWidth), ((h + 1) * tileRectHeight));
                 if (level.current.getTileMap()[w][h].getType() == 1) {
