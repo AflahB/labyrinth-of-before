@@ -4,18 +4,18 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
 
 public abstract class Character {
 
     private int xPos_;
     private int yPos_;
     private int direction_;
-
-    public Character(int x, int y, int d){
+    private Bitmap[][] sprites_;
+    public Character(int x, int y, int d, Bitmap[][] bitmaps){
         xPos_       = x;
         yPos_       = y;
         direction_  = d;
+        sprites_     = bitmaps;
     }
 
     public int getXPos()        {return xPos_;}
@@ -23,7 +23,9 @@ public abstract class Character {
     public int getDirection()   {return direction_;}
 
     public void moveUp(Map currentlevel){
-        move(currentlevel, getXPos(),       getYPos() - 1,  1);}
+
+        move(currentlevel, getXPos(),       getYPos() - 1,  1);
+    }
 
     public void moveDown(Map currentlevel){
         move(currentlevel, getXPos(),       getYPos() + 1,  3);
@@ -66,16 +68,32 @@ public abstract class Character {
 
     }
 
-    protected void setXPos(int xPos)            {xPos_      = xPos;}
-    protected void setYPos(int yPos)            {yPos_      = yPos;}
-    protected void setDirection(int direction)  {direction_ = direction;}
+    protected void setXPos(int xPos)            {
+        xPos_      = xPos;
+    }
+    protected void setYPos(int yPos)            {
+        yPos_      = yPos;
+    }
+    protected void setDirection(int direction)  {
+        direction_ = direction;
+    }
 
     protected void move(Map currentLevel, int xPos, int yPos, int direction){
-        direction_ = direction;
-        if(currentLevel.getLevel()[xPos][yPos].getType()!=0){
-            xPos_ = xPos;
-            yPos_ = yPos;
+        if(xPos > 21)
+            xPos = 0;
+        if(xPos < 0)
+            xPos = 21;
+        if(yPos > 21)
+            yPos = 0;
+        if(yPos < 0)
+            yPos = 21;
+
+        setDirection(direction);
+        if(currentLevel.getLevel()[xPos][yPos].getType()!= 1){
+            setXPos(xPos);
+            setYPos(yPos);
         }
+
     }
 }
 	

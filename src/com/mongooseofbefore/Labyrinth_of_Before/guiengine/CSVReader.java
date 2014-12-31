@@ -8,16 +8,14 @@
  */
 package com.mongooseofbefore.Labyrinth_of_Before.guiengine;
 
+import android.content.Context;
+import android.widget.Toast;
+import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
-
-
-import android.content.Context;
-import android.widget.Toast;
 
 public class CSVReader{
 
@@ -41,7 +39,6 @@ public class CSVReader{
 			line = csvReader.readLine();
 
 			while (line != null) {
-				line = csvReader.readLine();
 				
 				int y = 0;
 				int x = 0;

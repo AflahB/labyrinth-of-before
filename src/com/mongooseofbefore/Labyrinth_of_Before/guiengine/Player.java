@@ -4,12 +4,13 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
 
 public class Player extends Character{
 
-    public Player(int x, int y, int d) {
-        super(x, y, d);
+    private boolean nextLevel_;
+
+    public Player(int x, int y, int d, Bitmap[][] bitmaps) {
+        super(x, y, d, bitmaps);
     }
 
     public void draw(Canvas canvas, Context context){
@@ -22,7 +23,6 @@ public class Player extends Character{
         {
             bitmap0 = Helper.getBitmapFromAsset("art/menu/bgn.png", context);
             canvas.drawBitmap(bitmap0, null, rect, null);
-
         }
         else if(d==2)
         {
@@ -50,12 +50,31 @@ public class Player extends Character{
     }
 
     protected void move(Map currentLevel, int xPos, int yPos, int direction){
+        if(xPos > 21)
+            xPos = 0;
+        if(xPos < 0)
+            xPos = 21;
+        if(yPos > 21)
+            yPos = 0;
+        if(yPos < 0)
+            yPos = 21;
+
         setDirection(direction);
-        if(currentLevel.getLevel()[xPos][yPos].getType()!=1){
-            yPos--;
-            if(currentLevel.getLevel()[xPos][yPos].getType() == 2){
-                GameEngine.nextLevel();
-            }
+        if(currentLevel.getLevel()[xPos][yPos].getType() == 1){
+            return;
         }
+        setXPos(xPos);
+        setYPos(yPos);
+        if(currentLevel.getLevel()[xPos][yPos].getType() == 2){
+            nextLevel_ = true;
+        }
+    }
+
+    public boolean nextLevel(){
+        return nextLevel_;
+    }
+
+    public void resetNextLevel(){
+        nextLevel_ = false;
     }
 }

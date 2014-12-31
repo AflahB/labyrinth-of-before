@@ -14,17 +14,13 @@
 
 package com.mongooseofbefore.Labyrinth_of_Before.gameengine;
 
-import android.widget.Switch;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Boss;
 import com.mongooseofbefore.Labyrinth_of_Before.guiengine.CSVReader;
 import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Map;
 import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Player;
-
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Canvas;
-
-import java.util.logging.Level;
 
 public class GameEngine {
 
@@ -32,12 +28,11 @@ public class GameEngine {
     public  float   screenHeight;
 
     // creates a map and canvas
-    Canvas      canvas;
+//    Canvas      canvas;
     private static  int     level_;
     public  static  Map     currentTileMap  = new Map(21,21);
     public  static  Map     flipTileMap     = new Map(21,21);
     private static  Map     temp_;
-    Resources               resources;
     public  static  Boolean flipped         = false;
     public  static  Player  player;
     public  static  Boss    boss;
@@ -53,12 +48,12 @@ public class GameEngine {
         context_    = context;
         currentTileMap.init(context);
         //setTheme(paintBlack, paintWhite);
-        player      = new Player(0, 0, 0);
+        player      = new Player(0, 0, 0, new Bitmap[4][4]);
         //Loads current level from CSV
         load(level_);
     }
 
-    public static void load(int level){
+    public void load(int level){
         String  path    = "";
         switch(level){
             case 1:     path    = "levels/fields.csv";
@@ -86,7 +81,12 @@ public class GameEngine {
     }
 
 
-    public void update(){}
+    public void update(){
+        if(player.nextLevel()) {
+            nextLevel();
+            player.resetNextLevel();
+        }
+    }
 
     /**
      * Draws the map on the canvas along with the player and also the boss

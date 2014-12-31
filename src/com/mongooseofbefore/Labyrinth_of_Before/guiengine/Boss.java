@@ -1,15 +1,13 @@
 package com.mongooseofbefore.Labyrinth_of_Before.guiengine;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-
+import android.graphics.Bitmap;
 import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
 
 public class Boss extends Character{
 	private String path = new String();
 	//the constructor
-	public Boss (int x, int y, int d){
-		super(x, y, d);
+	public Boss (int x, int y, int d, Bitmap[][] bitmaps){
+		super(x, y, d, bitmaps);
 	}
 	
 	public void setBoss(int x, int y, int d){

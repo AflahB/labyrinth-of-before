@@ -6,16 +6,18 @@ import android.support.v4.app.FragmentActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import com.example.Labyrinth_of_Before.R;
 import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
 import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameThread;
 
 public class GameActivity extends FragmentActivity implements OnTouchListener {
-    ImageView upView;
-    ImageView leftView;
-    ImageView downView;
-    ImageView rightView;
+    ImageView   upView;
+    ImageView   leftView;
+    ImageView   downView;
+    ImageView   rightView;
+    Button      flip;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,13 +34,11 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
         rightView = (ImageView) findViewById(R.id.imageViewRight);
         rightView.setOnTouchListener(this);
 
-
-
     }
 
     // flip method called on device rotation
     public void flip(View view) {
-        GameThread.gameEngine.mapFlip();
+        GameThread.GameEngine().mapFlip();
     }
 
     @Override

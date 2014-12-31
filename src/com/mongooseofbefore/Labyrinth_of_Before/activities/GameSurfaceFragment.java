@@ -25,13 +25,16 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        surfaceView = (SurfaceView) getView().findViewById(R.id.surfaceViewGame);
+        View v = inflater.inflate(R.layout.gamefragment, container, false);
+
+        surfaceView = (SurfaceView) v.findViewById(R.id.surfaceViewGame);
         surfaceHolder = surfaceView.getHolder();
+        context = v.getContext();
         gameEngine = new GameEngine();
         gameEngine.init(context);
         gameThread = new GameThread(surfaceHolder, context, new Handler(), gameEngine);
 
-        return inflater.inflate(R.layout.gamefragment, container, false);
+        return v;
     }
 
     /**

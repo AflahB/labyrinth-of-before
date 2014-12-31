@@ -41,5 +41,5 @@
             android:layout_height="wrap_content"
             android:text="Flip"
             android:id="@+id/buttonFlip" android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"
-            android:alpha="0.5"/>
+            android:alpha="0.5" android:onClick="flip"/>
 </RelativeLayout>
