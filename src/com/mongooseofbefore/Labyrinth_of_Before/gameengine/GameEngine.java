@@ -2,7 +2,10 @@ package com.mongooseofbefore.Labyrinth_of_Before.gameengine;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import com.mongooseofbefore.Labyrinth_of_Before.guiengine.*;
+import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Camera;
+import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Helper;
+import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Level;
+import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Map;
 
 public class GameEngine {
 
@@ -32,6 +35,22 @@ public class GameEngine {
         flipBitmaps     = new Bitmap[2];
 
         playerSprites   = new Bitmap[4][4];
+        playerSprites[0][0]    = Helper.getBitmapFromAsset("art/character/North Facing/characterN-1.png", context_);
+        playerSprites[0][1]    = Helper.getBitmapFromAsset("art/character/North Facing/characterN-2.png", context_);
+        playerSprites[0][2]    = Helper.getBitmapFromAsset("art/character/North Facing/characterN-3.png", context_);
+        playerSprites[0][3]    = Helper.getBitmapFromAsset("art/character/North Facing/characterN-4.png", context_);
+        playerSprites[1][0]    = Helper.getBitmapFromAsset("art/character/East Facing/characterE-1.png", context_);
+        playerSprites[1][1]    = Helper.getBitmapFromAsset("art/character/East Facing/characterE-2.png", context_);
+        playerSprites[1][2]    = Helper.getBitmapFromAsset("art/character/East Facing/characterE-3.png", context_);
+        playerSprites[1][3]    = Helper.getBitmapFromAsset("art/character/East Facing/characterE-4.png", context_);
+        playerSprites[2][0]    = Helper.getBitmapFromAsset("art/character/South Facing/characterS-1.png", context_);
+        playerSprites[2][1]    = Helper.getBitmapFromAsset("art/character/South Facing/characterS-2.png", context_);
+        playerSprites[2][2]    = Helper.getBitmapFromAsset("art/character/South Facing/characterS-3.png", context_);
+        playerSprites[2][3]    = Helper.getBitmapFromAsset("art/character/South Facing/characterS-4.png", context_);
+        playerSprites[3][0]    = Helper.getBitmapFromAsset("art/character/West Facing/characterW-1.png", context_);
+        playerSprites[3][1]    = Helper.getBitmapFromAsset("art/character/West Facing/characterW-2.png", context_);
+        playerSprites[3][2]    = Helper.getBitmapFromAsset("art/character/West Facing/characterW-3.png", context_);
+        playerSprites[3][3]    = Helper.getBitmapFromAsset("art/character/West Facing/characterW-4.png", context_);
 
         bossSprites     = new Bitmap[4][4];
 
@@ -39,6 +58,7 @@ public class GameEngine {
         load(levelCount_);
 
         camera_= new Camera();
+
 
     }
 
@@ -66,22 +86,6 @@ public class GameEngine {
                 flipBitmaps[1]  = Helper.getBitmapFromAsset("art/tiles/tartarus/wall 2.png", context_);
                 break;
         }
-        playerSprites[0][0]    = Helper.getBitmapFromAsset("art/character/North Facing/characterN-1.png", context_);
-        playerSprites[0][1]    = Helper.getBitmapFromAsset("art/character/North Facing/characterN-2.png", context_);
-        playerSprites[0][2]    = Helper.getBitmapFromAsset("art/character/North Facing/characterN-3.png", context_);
-        playerSprites[0][3]    = Helper.getBitmapFromAsset("art/character/North Facing/characterN-4.png", context_);
-        playerSprites[1][0]    = Helper.getBitmapFromAsset("art/character/East Facing/characterE-1.png", context_);
-        playerSprites[1][1]    = Helper.getBitmapFromAsset("art/character/East Facing/characterE-2.png", context_);
-        playerSprites[1][2]    = Helper.getBitmapFromAsset("art/character/East Facing/characterE-3.png", context_);
-        playerSprites[1][3]    = Helper.getBitmapFromAsset("art/character/East Facing/characterE-4.png", context_);
-        playerSprites[2][0]    = Helper.getBitmapFromAsset("art/character/South Facing/characterS-1.png", context_);
-        playerSprites[2][1]    = Helper.getBitmapFromAsset("art/character/South Facing/characterS-2.png", context_);
-        playerSprites[2][2]    = Helper.getBitmapFromAsset("art/character/South Facing/characterS-3.png", context_);
-        playerSprites[2][3]    = Helper.getBitmapFromAsset("art/character/South Facing/characterS-4.png", context_);
-        playerSprites[3][0]    = Helper.getBitmapFromAsset("art/character/West Facing/characterW-1.png", context_);
-        playerSprites[3][1]    = Helper.getBitmapFromAsset("art/character/West Facing/characterW-2.png", context_);
-        playerSprites[3][2]    = Helper.getBitmapFromAsset("art/character/West Facing/characterW-3.png", context_);
-        playerSprites[3][3]    = Helper.getBitmapFromAsset("art/character/West Facing/characterW-4.png", context_);
 
         Object[] levelObjects = Helper.parseLevelCSV(path, context_);
         level_ = new Level(levelObjects, currentBitmaps, flipBitmaps, playerSprites, bossSprites);
@@ -89,8 +93,13 @@ public class GameEngine {
     }
 
     public void nextLevel(){
+        if(levelCount_ > 3)
+            endGame();
         levelCount_++;
         load(levelCount_);
+    }
+
+    public void endGame(){
     }
 
 

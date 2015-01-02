@@ -13,23 +13,28 @@ public class Camera {
     }
 
     public void draw(Level level, Canvas canvas){
-        int screenWidth_ = canvas.getWidth();
-        //int screenHeight_= canvas.getHeight();
+        int screenWidth     = canvas.getWidth();
+        int screenHeight    = canvas.getHeight();
 
-        RectF tileRect = new RectF();
-        RectF playerRect = new RectF();
+        int tileMapWidth    = level.current.getWidth();
+        int tileMapHeight   = level.current.getHeight();
+
+        RectF tileRect      = new RectF();
+        RectF playerRect    = new RectF();
+
+        int tileRectPx = screenWidth/ tileMapWidth;
+
+        int offsetX         = (screenWidth - (tileMapWidth * tileRectPx))/2;
+        int offsetY         = (screenHeight - (tileMapHeight * tileRectPx))/2;
 
         int h = 0;
         int w = 0;
-        int tileRectWidth = screenWidth_/ level.current.getWidth();
-        int tileRectHeight = tileRectWidth;
-
 
         // draws the map array, tile by tile, based on their type
         while (h < level.current.getHeight()) {
             while (w < level.current.getWidth()) {
-                tileRect.set((w * tileRectHeight), (h * tileRectHeight),
-                        ((w + 1) * tileRectWidth), ((h + 1) * tileRectHeight));
+                tileRect.set((w * tileRectPx) + offsetX, (h * tileRectPx) + offsetY,
+                        ((w + 1) * tileRectPx) + offsetX, ((h + 1) * tileRectPx) + offsetY);
                 if (level.current.getTileMap()[w][h].getType() == 1) {
                         canvas.drawBitmap(level.current.getBitmaps()[0], null, tileRect, null);
 
@@ -47,7 +52,8 @@ public class Camera {
         int xPos    = level.getPlayer().getXPos();
         int yPos    = level.getPlayer().getYPos();
         Bitmap currentSprite  = level.getPlayer().getSprites()[d][step];
-        playerRect.set((xPos * tileRectWidth), (yPos * tileRectHeight), ((xPos + 1) * tileRectWidth), ((yPos + 1) * tileRectHeight));
+        playerRect.set((xPos * tileRectPx) + offsetX, (yPos * tileRectPx) + offsetY,
+                ((xPos + 1) * tileRectPx) + offsetX, ((yPos + 1) * tileRectPx) + offsetY);
         canvas.drawBitmap(currentSprite, null, playerRect, null);
 
 

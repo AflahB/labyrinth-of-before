@@ -24,6 +24,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="svg-android" level="project" />
   </component>
 </module>
 

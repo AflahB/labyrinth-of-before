@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.*;
 import android.widget.Toast;
-import com.example.Labyrinth_of_Before.R;
+import com.mongooseofbefore.Labyrinth_of_Before.R;
 import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameEngine;
 import com.mongooseofbefore.Labyrinth_of_Before.gameengine.GameThread;
 
@@ -55,7 +55,7 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
                 gameThread.join();
                 retry = false;
             } catch (InterruptedException e) {
-                Toast.makeText(getActivity(), "Error: " + e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error: " + e.toString(), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }

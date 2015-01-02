@@ -108,7 +108,10 @@ public class Helper {
 
 
         } catch (IOException e) {
-            Toast.makeText(context, "Error Reading File \n" + e.toString(),
+            Toast.makeText(context, "File not found \n" + e.toString(),
+                    Toast.LENGTH_SHORT).show();
+        } catch (ArrayIndexOutOfBoundsException e){
+            Toast.makeText(context, "Error in level file \n" + e.toString(),
                     Toast.LENGTH_SHORT).show();
         }
         return null;

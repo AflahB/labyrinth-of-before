@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import com.example.Labyrinth_of_Before.R;
+import com.mongooseofbefore.Labyrinth_of_Before.R;
 import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Helper;
 
 public class MainMenuActivity extends Activity implements OnTouchListener {
@@ -26,6 +28,14 @@ public class MainMenuActivity extends Activity implements OnTouchListener {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
+        //Remove title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //Remove notification bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
         setContentView(R.layout.main);
 
         bkgView     = (ImageView) findViewById(R.id.imageViewBackground);
