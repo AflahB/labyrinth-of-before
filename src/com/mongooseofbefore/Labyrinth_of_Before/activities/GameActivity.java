@@ -19,7 +19,6 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
         super.onCreate(savedInstanceState);
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         Window w = this.getWindow();
 
         //Remove notification bar
@@ -43,6 +42,7 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
         down.setImageBitmap(Helper.getBitmapFromAsset("art/controls/down.png", this));
         left.setImageBitmap(Helper.getBitmapFromAsset("art/controls/left.png", this));
     }
+
 
 
     // flip method called on device rotation

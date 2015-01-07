@@ -40,8 +40,34 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
         gameEngine.init(context);
         gameThread = new GameThread(surfaceHolder_, context, new Handler(), gameEngine);
 
+        if(savedInstanceState != null){
+
+            int playerPositionX = savedInstanceState.getInt("playerPosX");
+            int playerPositionY = savedInstanceState.getInt("playerPosY");
+            int playerDirection = savedInstanceState.getInt("playerDir");
+
+            gameEngine.getLevel().getPlayer().setCharacter(playerPositionX, playerPositionY, playerDirection);
+        }
+
         return v;
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+        int playerPositionX = gameEngine.getLevel().getPlayer().getXPos();
+        int playerPositionY = gameEngine.getLevel().getPlayer().getYPos();
+        int playerDirection = gameEngine.getLevel().getPlayer().getDirection();
+
+        savedInstanceState.putInt("playerPosX", playerPositionX);
+        savedInstanceState.putInt("playerPosY", playerPositionY);
+        savedInstanceState.putInt("playerDir", playerDirection);
+    }
+
+
 
     /**
      * handles pausing and closing the application
@@ -66,11 +92,10 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
      */
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        if (gameThread.state == GameThread.PAUSED) {
-            gameThread.start();
-        } else {
-            gameThread.start();
+        if (gameThread.getState() == GameThread.State.TERMINATED) {
+            gameThread = new GameThread(surfaceHolder_, context, new Handler(), gameEngine);
         }
+        gameThread.start();
     }
 
     /**

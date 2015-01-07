@@ -9,12 +9,21 @@ import android.graphics.RectF;
  */
 public class Camera {
 
+    int gamePx;
+
     public Camera(){
     }
 
     public void draw(Level level, Canvas canvas){
+        if(level == null)
+            return;
+        if(canvas == null)
+            return;
+
         int screenWidth     = canvas.getWidth();
         int screenHeight    = canvas.getHeight();
+
+        gamePx = Math.min(screenWidth, screenHeight);
 
         int tileMapWidth    = level.current.getWidth();
         int tileMapHeight   = level.current.getHeight();
@@ -22,7 +31,7 @@ public class Camera {
         RectF tileRect      = new RectF();
         RectF playerRect    = new RectF();
 
-        int tileRectPx = screenWidth/ tileMapWidth;
+        int tileRectPx = gamePx/ tileMapWidth;
 
         int offsetX         = (screenWidth - (tileMapWidth * tileRectPx))/2;
         int offsetY         = (screenHeight - (tileMapHeight * tileRectPx))/2;
@@ -55,7 +64,5 @@ public class Camera {
         playerRect.set((xPos * tileRectPx) + offsetX, (yPos * tileRectPx) + offsetY,
                 ((xPos + 1) * tileRectPx) + offsetX, ((yPos + 1) * tileRectPx) + offsetY);
         canvas.drawBitmap(currentSprite, null, playerRect, null);
-
-
     }
 }

@@ -35,7 +35,6 @@ public class MainMenuActivity extends Activity implements OnTouchListener {
         //Remove notification bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
         setContentView(R.layout.main);
 
         bkgView     = (ImageView) findViewById(R.id.imageViewBackground);
@@ -73,6 +72,10 @@ public class MainMenuActivity extends Activity implements OnTouchListener {
     private boolean selectView(View view){
         if(view == startView){
             Intent intent = new Intent(this, GameActivity.class);
+            this.startActivity(intent);
+        }
+        else if (view == creditsView){
+            Intent intent = new Intent(this, CreditsActivity.class);
             this.startActivity(intent);
         }
         else if(view == exitView){

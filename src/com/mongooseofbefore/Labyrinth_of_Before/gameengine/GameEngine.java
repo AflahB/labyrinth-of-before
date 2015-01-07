@@ -2,12 +2,14 @@ package com.mongooseofbefore.Labyrinth_of_Before.gameengine;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Camera;
 import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Helper;
 import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Level;
 import com.mongooseofbefore.Labyrinth_of_Before.guiengine.Map;
 
-public class GameEngine {
+public class GameEngine implements Parcelable{
 
     private static  Level   level_;
     private static  Camera  camera_;
@@ -58,12 +60,12 @@ public class GameEngine {
         load(levelCount_);
 
         camera_= new Camera();
-
-
     }
 
+    public Level getLevel(){ return level_;}
+
     public void load(int level){
-        String  path    = "";
+        String  path;
 
         //Selects level data based on current level value
         switch(level){
@@ -89,7 +91,6 @@ public class GameEngine {
 
         Object[] levelObjects = Helper.parseLevelCSV(path, context_);
         level_ = new Level(levelObjects, currentBitmaps, flipBitmaps, playerSprites, bossSprites);
-
     }
 
     public void nextLevel(){
@@ -133,5 +134,15 @@ public class GameEngine {
         if(direction < 0 || direction > 3)
             throw new Error("Invalid Move Direction");
         level_.getPlayer().move(level_.current, direction);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }
