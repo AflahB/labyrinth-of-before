@@ -1,7 +1,9 @@
 package com.mongooseofbefore.Labyrinth_of_Before.activities;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -37,10 +39,49 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
         down.setOnTouchListener(this);
         left.setOnTouchListener(this);
 
-        up.setImageBitmap(Helper.getBitmapFromAsset("art/controls/up.png", this));
-        right.setImageBitmap(Helper.getBitmapFromAsset("art/controls/right.png", this));
-        down.setImageBitmap(Helper.getBitmapFromAsset("art/controls/down.png", this));
-        left.setImageBitmap(Helper.getBitmapFromAsset("art/controls/left.png", this));
+        Bitmap[] controlsBitmap = new Bitmap[4];
+        controlsBitmap[0] = Helper.getBitmapFromAsset("art/controls/up.png", this);
+        controlsBitmap[1] = Helper.getBitmapFromAsset("art/controls/right.png", this);
+        controlsBitmap[2] = Helper.getBitmapFromAsset("art/controls/down.png", this);
+        controlsBitmap[3] = Helper.getBitmapFromAsset("art/controls/left.png", this);
+
+        int width = 0;
+        int height = 0;
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        switch (metrics.densityDpi){
+            case DisplayMetrics.DENSITY_LOW:
+                width   = 20;
+                height  = 20;
+                break;
+            case DisplayMetrics.DENSITY_MEDIUM:
+                width   = 50;
+                height  = 50;
+                break;
+            case DisplayMetrics.DENSITY_HIGH:
+                width   = 80;
+                height  = 80;
+                break;
+            case DisplayMetrics.DENSITY_XHIGH:
+                width   = 100;
+                height  = 100;
+                break;
+            default:
+                width   = 60;
+                height  = 60;
+                break;
+        }
+
+        for(int i = 0; i <= 3; i++){
+            controlsBitmap[i] = Bitmap.createScaledBitmap(controlsBitmap[i], width, height, true);
+        }
+
+        up.setImageBitmap(controlsBitmap[0]);
+        right.setImageBitmap(controlsBitmap[1]);
+        down.setImageBitmap(controlsBitmap[2]);
+        left.setImageBitmap(controlsBitmap[3]);
     }
 
 
