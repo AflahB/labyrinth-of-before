@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Labyrinth of Before.iml" filepath="$PROJECT_DIR$/Labyrinth of Before.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LabyrinthofBefore.iml" filepath="$PROJECT_DIR$/LabyrinthofBefore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
-

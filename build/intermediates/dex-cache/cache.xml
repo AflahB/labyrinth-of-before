@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/aflah/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/aflah/AndroidStudioProjects/LabyrinthofBefore/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-d0d00d113879aa177e8ecc284580158bed45a3e4.jar" />
+    </item>
+    <item
+        jar="/Users/aflah/AndroidStudioProjects/LabyrinthofBefore/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/aflah/AndroidStudioProjects/LabyrinthofBefore/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-5e48d8557863e575a6eed867bce939c807318747.jar" />
+    </item>
+    <item
+        jar="/Users/aflah/AndroidStudioProjects/LabyrinthofBefore/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/aflah/AndroidStudioProjects/LabyrinthofBefore/app/build/intermediates/pre-dexed/debug/classes-6120a9c6af30066f80d9322e75abb6514eb6cf7b.jar" />
+    </item>
+    <item
+        jar="/Users/aflah/AndroidStudioProjects/LabyrinthofBefore/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/aflah/AndroidStudioProjects/LabyrinthofBefore/app/build/intermediates/pre-dexed/debug/classes-f42333d81438f2dfef1b7f9102a29a6b5e1d5e9d.jar" />
+    </item>
+
+</items>
