@@ -24,9 +24,29 @@ public class GameEngine implements Parcelable{
 
     private  Context context_;
 
+    public GameEngine(){}
+
+    protected GameEngine(Parcel in) {
+        currentBitmaps = in.createTypedArray(Bitmap.CREATOR);
+        flipBitmaps = in.createTypedArray(Bitmap.CREATOR);
+        levelCount_ = in.readInt();
+    }
+
+    public static final Creator<GameEngine> CREATOR = new Creator<GameEngine>() {
+        @Override
+        public GameEngine createFromParcel(Parcel in) {
+            return new GameEngine(in);
+        }
+
+        @Override
+        public GameEngine[] newArray(int size) {
+            return new GameEngine[size];
+        }
+    };
+
     /**
      * Initializes the Game Engine, Creating the two Map Objects
-     * @param context
+     * @param context Context of the application
      */
     public void init(Context context) {
         levelCount_ = 1;
@@ -114,7 +134,7 @@ public class GameEngine implements Parcelable{
 
     /**
      * Draws the map on the canvas along with the player and also the boss
-     * @param canvas
+     * @param canvas The canvas object to draw the map on.
      */
     public void drawMap(Canvas canvas) {
         camera_.draw(level_, canvas);
@@ -144,6 +164,8 @@ public class GameEngine implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeTypedArray(currentBitmaps, flags);
+        dest.writeTypedArray(flipBitmaps, flags);
+        dest.writeInt(levelCount_);
     }
 }
