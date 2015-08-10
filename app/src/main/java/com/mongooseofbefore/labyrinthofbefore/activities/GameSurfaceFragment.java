@@ -1,6 +1,6 @@
 package com.mongooseofbefore.labyrinthofbefore.activities;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +12,7 @@ import com.mongooseofbefore.labyrinthofbefore.gameengine.GameEngine;
 import com.mongooseofbefore.labyrinthofbefore.gameengine.GameThread;
 
 /**
- * Created by Aflah on 12/30/2014.
+ * @author Aflah Bhari
  */
 public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callback {
 
