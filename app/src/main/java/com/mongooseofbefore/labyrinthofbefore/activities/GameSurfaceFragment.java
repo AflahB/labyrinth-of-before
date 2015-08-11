@@ -69,7 +69,6 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
     }
 
 
-
     /**
      * handles pausing and closing the application
      */

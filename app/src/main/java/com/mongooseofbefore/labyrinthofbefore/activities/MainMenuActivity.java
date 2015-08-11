@@ -2,7 +2,9 @@ package com.mongooseofbefore.labyrinthofbefore.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -16,6 +18,8 @@ import android.widget.ImageView;
 import com.mongooseofbefore.labyrinthofbefore.R;
 import com.mongooseofbefore.labyrinthofbefore.guiengine.Helper;
 
+import java.io.IOException;
+
 public class MainMenuActivity extends Activity implements OnTouchListener {
 
     ImageView bkgView;
@@ -24,6 +28,8 @@ public class MainMenuActivity extends Activity implements OnTouchListener {
     ImageButton optionsView;
     ImageButton creditsView;
     ImageButton exitView;
+
+    MediaPlayer player;
 
     /**
      * Called when the activity is first created.
@@ -48,8 +54,8 @@ public class MainMenuActivity extends Activity implements OnTouchListener {
         controlsBitmap[4] = Helper.getBitmapFromAsset("art/controls/left.png", this);
         controlsBitmap[5] = Helper.getBitmapFromAsset("art/controls/left.png", this);
 
-        int width = 0;
-        int height = 0;
+        int width;
+        int height;
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -104,6 +110,33 @@ public class MainMenuActivity extends Activity implements OnTouchListener {
         exitView    = (ImageButton) findViewById(R.id.imageButtonExit);
         exitView.setImageBitmap(Helper.getBitmapFromAsset("art/menu/exit.png", this));
         exitView.setOnTouchListener(this);
+
+        try {
+            AssetFileDescriptor afd = getAssets().openFd("music/menu.mp3");
+            player = new MediaPlayer();
+            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            player.prepare();
+            player.start();
+        }
+        catch (IOException e){
+            System.out.println("***** FILE READ ERROR: Asset file possibly corrupt!!! *****");
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        player.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        player.start();
     }
 
     public boolean onTouch(View view, MotionEvent event){
