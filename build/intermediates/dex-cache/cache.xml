@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/aflah/Documents/Labyrinth of Before/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/Users/aflah/Documents/Labyrinth of Before/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-0eeffeae1d7e27d06415e755e0c84114d06d7c14.jar" />
-    </item>
-    <item
         jar="/Users/aflah/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
         <dex dex="/Users/aflah/Documents/Labyrinth of Before/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-c3b3f86f1021628a325a7793122a2434651a3f8a.jar" />
+    </item>
+    <item
+        jar="/Users/aflah/Documents/Labyrinth of Before/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/aflah/Documents/Labyrinth of Before/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-0eeffeae1d7e27d06415e755e0c84114d06d7c14.jar" />
     </item>
     <item
         jar="/Users/aflah/Documents/Labyrinth of Before/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"

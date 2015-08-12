@@ -81,7 +81,7 @@ public class GameSurfaceFragment extends Fragment implements SurfaceHolder.Callb
                 gameThread.join();
                 retry = false;
             } catch (InterruptedException e) {
-                Toast.makeText(context, "Error: " + e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "SURFACE INTERRUPTED ERROR: \n" + e.toString(), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }

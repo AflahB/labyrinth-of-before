@@ -2,7 +2,7 @@
     package="com.mongooseofbefore.labyrinthofbefore">
 
     <application android:allowBackup="true" android:label="@string/app_name"
-        android:icon="@mipmap/main_logo" android:theme="@style/AppTheme">
+        android:icon="@mipmap/main_logo">
         <activity
             android:name=".activities.MainMenuActivity"
             android:label="@string/app_name" >

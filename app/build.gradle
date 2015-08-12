@@ -5,11 +5,11 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.mongooseofbefore.labyrinthofbefore"
+        applicationId "com.mongooseofbefore.Labyrinth_of_Before"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 11
+        versionName "2.1"
     }
     buildTypes {
         release {
