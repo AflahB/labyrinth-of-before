@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.mongooseofbefore.labyrinthofbefore.R;
 
 /**
- * @author aflah 
+ * @author aflah
  */
 public class CreditsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {

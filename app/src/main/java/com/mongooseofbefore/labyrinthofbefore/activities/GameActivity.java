@@ -46,16 +46,16 @@ public class GameActivity extends FragmentActivity implements OnTouchListener {
         controlsBitmap[2] = Helper.getBitmapFromAsset("art/controls/down.png", this);
         controlsBitmap[3] = Helper.getBitmapFromAsset("art/controls/left.png", this);
 
-        int width = 0;
-        int height = 0;
+        int width;
+        int height;
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         switch (metrics.densityDpi){
             case DisplayMetrics.DENSITY_LOW:
-                width   = 20;
-                height  = 20;
+                width   = 40;
+                height  = 40;
                 break;
             case DisplayMetrics.DENSITY_MEDIUM:
                 width   = 50;
